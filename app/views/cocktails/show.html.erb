@@ -1,16 +1,18 @@
 <div>
 <h1> <%= @cocktail.name %> </h1>
+<div>
 
 <% @ingredients = Ingredient.all %>
-
 <% @cocktail.doses.each do |dose| %>
+<p><%= dose.ingredient.name %></p>
 <p><%= dose.description %></p>
 <% end %>
+</div>
 
 <%= simple_form_for ([@cocktail, @dose]) do |f| %>
   <%= f.select :ingredient, collection: @ingredients.map{|ingredient|[ingredient.name, ingredient.id]}%>
   <%= f.input :description %>
-  <%= f.submit "Create Cocktail", class: 'btn btn-primary' %>
+  <%= f.submit "Add another dose", class: 'btn btn-primary' %>
 <% end %>
  
 
